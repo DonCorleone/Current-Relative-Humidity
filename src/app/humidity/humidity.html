@@ -1,0 +1,64 @@
+<section
+  class="mx-auto max-w-md rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-900/5"
+  aria-labelledby="humidity-heading"
+>
+  <header class="mb-6">
+    <h1 id="humidity-heading" class="text-xl font-semibold text-slate-900">
+      Current Relative Humidity
+    </h1>
+    <p class="text-sm text-slate-500">Lucerne, Switzerland</p>
+  </header>
+
+  @if (resource.isLoading()) {
+    <p class="text-slate-500" role="status">Loading current conditions…</p>
+  } @else if (resource.error()) {
+    <p class="text-red-600" role="alert">
+      Could not load weather data. Please try again.
+    </p>
+  } @else if (current(); as c) {
+    <div class="flex items-baseline gap-2">
+      <span class="text-6xl font-bold text-sky-600">{{ c.relative_humidity_2m }}</span>
+      <span class="text-2xl font-medium text-sky-600">%</span>
+    </div>
+    <dl class="mt-4 space-y-1 text-sm text-slate-600">
+      <div class="flex justify-between">
+        <dt>Temperature</dt>
+        <dd class="font-medium text-slate-900">{{ c.temperature_2m }} °C</dd>
+      </div>
+      <div class="flex justify-between">
+        <dt>Observed</dt>
+        <dd class="font-medium text-slate-900">{{ c.time }}</dd>
+      </div>
+    </dl>
+  }
+
+  <button
+    type="button"
+    class="mt-6 w-full rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition hover:bg-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 disabled:opacity-50"
+    (click)="reload()"
+    [disabled]="resource.isLoading()"
+  >
+    Refresh
+  </button>
+
+  <div class="mt-4 flex items-center justify-between">
+    <label for="auto-refresh" class="text-sm font-medium text-slate-700">
+      Auto-refresh every {{ intervalSeconds }}s
+    </label>
+    <button
+      id="auto-refresh"
+      type="button"
+      role="switch"
+      [attr.aria-checked]="autoRefresh()"
+      class="relative inline-flex h-6 w-11 items-center rounded-full transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+      [class]="autoRefresh() ? 'bg-sky-600' : 'bg-slate-300'"
+      (click)="toggleAutoRefresh()"
+    >
+      <span class="sr-only">Toggle auto-refresh</span>
+      <span
+        class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition"
+        [class]="autoRefresh() ? 'translate-x-5' : 'translate-x-0.5'"
+      ></span>
+    </button>
+  </div>
+</section>

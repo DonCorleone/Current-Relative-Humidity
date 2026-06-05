@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Humidity } from './humidity/humidity';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Humidity],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

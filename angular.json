@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ng-22": {
+    "humidity-monitor": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -59,10 +59,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng-22:build:production"
+              "buildTarget": "humidity-monitor:build:production"
             },
             "development": {
-              "buildTarget": "ng-22:build:development"
+              "buildTarget": "humidity-monitor:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -33,7 +33,7 @@ export class Weather {
       models: 'meteoswiss_icon_ch1',
       timezone: 'Europe/Berlin',
       past_days: 1,
-	    forecast_days: 1,
+	    forecast_days: 0,
     },
   }));
 }

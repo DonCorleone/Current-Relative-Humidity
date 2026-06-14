@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Weather } from '../weather';
 
 /** Auto-refresh interval in milliseconds. */
-const REFRESH_INTERVAL_MS = 60_000;
+const REFRESH_INTERVAL_MS = 900_000;
 
 @Component({
   selector: 'app-humidity',
@@ -18,6 +18,7 @@ export class Humidity {
 
   protected readonly autoRefresh = signal(true);
   protected readonly intervalSeconds = REFRESH_INTERVAL_MS / 1000;
+  protected readonly intervalMinutes = REFRESH_INTERVAL_MS / 60000;
 
   constructor() {
     effect((onCleanup) => {

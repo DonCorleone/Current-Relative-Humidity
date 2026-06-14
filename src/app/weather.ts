@@ -30,7 +30,10 @@ export class Weather {
       latitude: LUCERNE.latitude,
       longitude: LUCERNE.longitude,
       current: 'relative_humidity_2m,temperature_2m',
-      timezone: 'auto',
+      models: 'meteoswiss_icon_ch1',
+      timezone: 'Europe/Berlin',
+      past_days: 1,
+	    forecast_days: 1,
     },
   }));
 }
